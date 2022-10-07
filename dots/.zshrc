@@ -266,3 +266,4 @@ fi
 
 # local executable aliases
 alias pwninit='pwninit --template-path ~/.config/pwninit-template.py --template-bin-name elf'
+alias gdb='gdb-gef'
