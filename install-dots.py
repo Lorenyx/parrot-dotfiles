@@ -5,22 +5,20 @@ from pathlib import Path
 from requests import get
 
 HOME = Path('~/').expanduser()
+DOTS = Path('./dots')
+CUTTER_URL = 'https://github.com/rizinorg/cutter/releases/download/v2.1.2/Cutter-v2.1.2-Linux-x86_64.AppImage'
 
-#TODO change "HOME.joinpath('xxx')" into "HOME / 'xxx'"
-if __name__ == '__main__':
-    print('[=] Installing dot files...')
-    # --[ Move files to diretories ]--
-    #TODO Ask before overwriting
-    shutil.copy(r'./dots/.zshrc', HOME.joinpath('.zshrc'))
-    os.chmod(HOME.joinpath('.zshrc'), 0o755) # rwx|r-x|r-x
-    shutil.copy(r'./dots/pwninit-template.py', HOME.joinpath('.config/pwninit-template.py'))
-    shutil.copy(r'./dots/terminator.config', HOME.joinpath('.config/terminator/config'))
-    # --[ Install cutter ]--
-    print('[=] Downloading "cutter"...')
-    url = 'https://github.com/rizinorg/cutter/releases/download/v2.1.2/Cutter-v2.1.2-Linux-x86_64.AppImage'
-    r = get(url)
+def install_cutter():
+    r = get(CUTTER_URL)
     with open('./downloads/cutter', 'wb') as f:
         f.write(r.content)
-    shutil.move('./downloads/cutter', HOME.joinpath('.local/bin/cutter'))
-    os.chmod(HOME.joinpath('.local/bin/cutter'), 0o755) # rwx|r-x|r-x
-    print('[+] Done')
+    shutil.move('./downloads/cutter', HOME / '.local/bin/cutter')
+    os.chmod(HOME / '.local/bin/cutter', 0o755)  # rwx|r-x|r-x
+    return
+
+if __name__ == '__main__':
+    print('[=] Adding dotfiles')
+    shutil.copytree(DOTS, HOME, dirs_exist_ok=True) # will overwrite previous files
+    print('[=] Download cutter')
+    install_cutter()
+    print('[+] Done!')
