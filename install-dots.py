@@ -21,5 +21,5 @@ if __name__ == '__main__':
     with open('./downloads/cutter', 'wb') as f:
         f.write(r.content)
     shutil.move('./downloads/cutter', HOME.joinpath('.local/bin/cutter'))
-    os.chmod('~/.local/bin/cutter', 0o755) # rwx|r-x|r-x
+    os.chmod(HOME.joinpath('.local/bin/cutter'), 0o755) # rwx|r-x|r-x
     print('[+] Done')
