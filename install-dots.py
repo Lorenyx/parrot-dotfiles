@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # --[ Move files to diretories ]--
     #TODO Ask before overwriting
     shutil.copy(r'./dots/.zshrc', HOME.joinpath('.zshrc'))
-    os.chmod('~/.zshrc', 0o755) # rwx|r-x|r-x
+    os.chmod(HOME.joinpath('.zshrc'), 0o755) # rwx|r-x|r-x
     shutil.copy(r'./dots/.pwninit-template.py', HOME.joinpath('.config/pwninit-template.py'))
     shutil.copy(r'./dots/terminator.config', HOME.joinpath('.config/terminator/config'))
     # --[ Install cutter ]--
