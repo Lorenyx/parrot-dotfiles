@@ -4,7 +4,7 @@ import shutil, os
 from pathlib import Path
 from requests import get
 
-HOME = Path('~/').expanduser
+HOME = Path('~/').expanduser()
 
 if __name__ == '__main__':
     print('[=] Installing dot files...')
