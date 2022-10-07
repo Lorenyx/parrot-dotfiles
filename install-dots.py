@@ -4,6 +4,8 @@ import shutil, os
 from pathlib import Path
 from requests import get
 
+BANNER = '22.10.07'
+
 HOME = Path('~/').expanduser()
 DOTS = Path('./dots')
 CUTTER_URL = 'https://github.com/rizinorg/cutter/releases/download/v2.1.2/Cutter-v2.1.2-Linux-x86_64.AppImage'
@@ -17,8 +19,9 @@ def install_cutter():
     return
 
 if __name__ == '__main__':
+    print(f'--[ Version {BANNER} ]--')
     print('[=] Adding dotfiles')
     shutil.copytree(DOTS, HOME, dirs_exist_ok=True) # will overwrite previous files
-    print('[=] Download cutter')
+    print('[=] Downloading "cutter"')
     install_cutter()
     print('[+] Done!')
