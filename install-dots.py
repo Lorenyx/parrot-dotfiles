@@ -6,6 +6,7 @@ from requests import get
 
 HOME = Path('~/').expanduser()
 
+#TODO change "HOME.joinpath('xxx')" into "HOME / 'xxx'"
 if __name__ == '__main__':
     print('[=] Installing dot files...')
     # --[ Move files to diretories ]--
